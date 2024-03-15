@@ -8,5 +8,5 @@
 # dependencies listed in meta/main.yml with these.  That means that
 # both sets of dependencies must be lists. :(
 #
-# See also cisagov/skeleton-ansible-role#153.
+# See also cisagov/ansible-role-manage-thp#153.
 []
