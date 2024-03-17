@@ -1,2 +1,24 @@
 ---
-# tasks file for skeleton
+- name: Verify the provided transparent hugepage (THP) defrag setting
+  ansible.builtin.assert:
+    fail_msg: The provided transparent hugepage (THP) defrag setting is not valid
+    that:
+      - manage_thp_defrag_setting in ['always', 'defer', 'defer+madvise', 'madvise', 'never']
+
+- name: Verify the provided transparent hugepage (THP) enabled setting
+  ansible.builtin.assert:
+    fail_msg: The provided transparent hugepage (THP) enabled setting is not valid
+    that:
+      - manage_thp_enabled_setting in ['always', 'madvise', 'never']
+
+- name: Create the unit file to configure transparent hugepage support
+  ansible.builtin.template:
+    dest: /etc/systemd/system/{{ manage_thp_service_name }}.service
+    mode: 0644
+    src: configure-thp.service.j2
+  notify: systemd daemon-reload
+
+- name: Enable the service to configure transparent hugepage support
+  ansible.builtin.service:
+    enabled: true
+    name: "{{ manage_thp_service_name }}"

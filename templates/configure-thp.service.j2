@@ -1,0 +1,12 @@
+[Unit]
+After=sysinit.target local-fs.target
+DefaultDependencies=no
+Description=Configure Transparent HugePage (THP) support
+
+[Service]
+ExecStart=/bin/sh -c 'echo {{ manage_thp_defrag_setting }} > {{ manage_thp_defrag_path }}'
+ExecStart=/bin/sh -c 'echo {{ manage_thp_enabled_setting }} > {{ manage_thp_enabled_path }}'
+Type=oneshot
+
+[Install]
+WantedBy=basic.target

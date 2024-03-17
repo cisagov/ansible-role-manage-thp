@@ -1,0 +1,13 @@
+---
+# Path to manage the transparent hugepage (THP) defrag setting
+manage_thp_defrag_path: /sys/kernel/mm/transparent_hugepage/defrag
+# Value must be one of: always, defer, defer+madvise, madvise, or never
+manage_thp_defrag_setting: never
+
+# Path to manage the transparent hugepage (THP) enabled setting
+manage_thp_enabled_path: /sys/kernel/mm/transparent_hugepage/enabled
+# Value must be one of: always, madvise, or never
+manage_thp_enabled_setting: never
+
+# Name of the service to configure the transparent hugepage (THP) settings
+manage_thp_service_name: configure-transparent-hugepages
