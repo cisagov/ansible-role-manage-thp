@@ -1,5 +1,8 @@
 [Unit]
 After=sysinit.target local-fs.target
+{% if manage_thp_start_before_service is defined %}
+Before={{ manage_thp_start_before_service }}.service
+{% endif %}
 DefaultDependencies=no
 Description=Configure Transparent HugePage (THP) support
 
