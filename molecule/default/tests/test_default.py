@@ -12,7 +12,12 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 ).get_hosts("all")
 
 
-@pytest.mark.parametrize("x", [True])
-def test_packages(host, x):
-    """Run a dummy test, just to show what one would look like."""
-    assert x
+@pytest.mark.parametrize(
+    "service",
+    [
+        "configure-transparent-hugepages",
+    ],
+)
+def test_configure_thp_service(host, service):
+    """Test that any services created are enabled."""
+    assert host.service(service).is_enabled, f"The {service} service is not enabled"
