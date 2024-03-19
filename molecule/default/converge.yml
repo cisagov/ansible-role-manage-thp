@@ -5,3 +5,5 @@
     - name: Include ansible-role-manage-thp
       ansible.builtin.include_role:
         name: ansible-role-manage-thp
+      vars:
+        manage_thp_enabled_setting: never

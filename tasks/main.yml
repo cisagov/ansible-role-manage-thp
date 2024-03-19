@@ -4,6 +4,8 @@
     fail_msg: The provided transparent hugepage (THP) defrag setting is not valid
     that:
       - manage_thp_defrag_setting in ['always', 'defer', 'defer+madvise', 'madvise', 'never']
+  when:
+    - manage_thp_defrag_setting is defined
 
 - name: Verify the provided transparent hugepage (THP) enabled setting
   ansible.builtin.assert:

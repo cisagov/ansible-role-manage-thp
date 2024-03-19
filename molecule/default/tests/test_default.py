@@ -20,4 +20,5 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 )
 def test_configure_thp_service(host, service):
     """Test that any services created are enabled."""
-    assert host.service(service).is_enabled, f"The {service} service is not enabled"
+    svc = host.service(service)
+    assert svc.is_enabled, f"The {service} service is not enabled"

@@ -7,7 +7,9 @@ DefaultDependencies=no
 Description=Configure Transparent HugePage (THP) support
 
 [Service]
+{% if manage_thp_defrag_setting is defined %}
 ExecStart=/bin/sh -c 'echo {{ manage_thp_defrag_setting }} > {{ manage_thp_defrag_path }}'
+{% endif %}
 ExecStart=/bin/sh -c 'echo {{ manage_thp_enabled_setting }} > {{ manage_thp_enabled_path }}'
 Type=oneshot
 
