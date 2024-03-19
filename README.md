@@ -3,13 +3,9 @@
 [![GitHub Build Status](https://github.com/cisagov/ansible-role-manage-thp/workflows/build/badge.svg)](https://github.com/cisagov/ansible-role-manage-thp/actions)
 [![CodeQL](https://github.com/cisagov/ansible-role-manage-thp/workflows/CodeQL/badge.svg)](https://github.com/cisagov/ansible-role-manage-thp/actions/workflows/codeql-analysis.yml)
 
-This is a skeleton project that can be used to quickly get a new
-[cisagov](https://github.com/cisagov) Ansible role GitHub project
-started.  This skeleton project contains
-[licensing information](LICENSE), as well as
-[pre-commit hooks](https://pre-commit.com) and
-[GitHub Actions](https://github.com/features/actions) configurations
-appropriate for an Ansible role.
+An Ansible role to manage Transparent HugePages (THP) on Linux systems. This
+role is inspired by the [GekoCloud/ansible-role-disable-thp](https://github.com/GekoCloud/ansible-role-disable-thp)
+role.
 
 ## Requirements ##
 
@@ -17,14 +13,13 @@ None.
 
 ## Role Variables ##
 
-None.
-
-<!--
 | Variable | Description | Default | Required |
 |----------|-------------|---------|----------|
-| optional_variable | Describe its purpose. | `default_value` | No |
-| required_variable | Describe its purpose. | n/a | Yes |
--->
+| manage\_thp\_defrag\_path | The sysfs path to control the `defrag` setting for transparent hugepages. | `/sys/kernel/mm/transparent_hugepage/defrag` | No |
+| manage\_thp\_defrag\_setting | If defined it must be a value of `always`, `defer`, `defer+madvise`, `madvise`, or `never`. Please see the [kernel documentation] for more information. | n/a | No |
+| manage\_thp\_enabled\_path | The sysfs path to control the `enabled` setting for transparent hugepages. | `/sys/kernel/mm/transparent_hugepage/enabled` | No |
+| manage\_thp\_enabled\_setting | A value of `always`, `madvise`, or `never`. Please see the [kernel documentation] for more information. | n/a | Yes |
+| manage\_thp\_service\_name | The name of the SystemD service that is created to manage transparent hugepage settings. Please note that `.service` is appended to this value in the name of the unit file created. | `configure-transparent-hugepages` | No |
 
 ## Dependencies ##
 
@@ -39,17 +34,12 @@ Here's how to use it in a playbook:
   become: true
   become_method: sudo
   tasks:
-    - name: Include skeleton
+    - name: Manage transparent hugepages
       ansible.builtin.include_role:
-        name: skeleton
+        name: manage_thp
+      vars:
+        manage_thp_enabled_setting: never
 ```
-
-## New Repositories from a Skeleton ##
-
-Please see our [Project Setup guide](https://github.com/cisagov/development-guide/tree/develop/project_setup)
-for step-by-step instructions on how to start a new repository from
-a skeleton. This will save you time and effort when configuring a
-new repository!
 
 ## Contributing ##
 
@@ -71,4 +61,6 @@ with this waiver of copyright interest.
 
 ## Author Information ##
 
-First Last - <first.last@gwe.cisa.dhs.gov>
+Nicholas McDonnell - <nicholas.mcdonnell@gwe.cisa.dhs.gov>
+
+[kernel documentation]: https://www.kernel.org/doc/html/next/admin-guide/mm/transhuge.html#global-thp-controls
