@@ -5,5 +5,11 @@ manage_thp_defrag_path: /sys/kernel/mm/transparent_hugepage/defrag
 # Path to manage the transparent hugepage (THP) enabled setting
 manage_thp_enabled_path: /sys/kernel/mm/transparent_hugepage/enabled
 
+# path to manage the transparent hugepage (THP) shmem_enabled setting
+manage_thp_shmem_enabled_path: /sys/kernel/mm/transparent_hugepage/shmem_enabled
+
+# path to manage the transparent hugepage (THP) use_zero_page setting
+manage_thp_use_zero_page_path: /sys/kernel/mm/transparent_hugepage/use_zero_page
+
 # Name of the service to configure the transparent hugepage (THP) settings
 manage_thp_service_name: configure-transparent-hugepages

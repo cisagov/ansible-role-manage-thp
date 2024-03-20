@@ -13,6 +13,22 @@
     that:
       - manage_thp_enabled_setting in ['always', 'madvise', 'never']
 
+- name: Verify the provided transparent hugepage (THP) shmem_enabled setting
+  ansible.builtin.assert:
+    fail_msg: The provided transparent hugepage (THP) shmem_enabled setting is not valid
+    that:
+      - manage_thp_shmem_enabled_setting in ['always', 'within_size', 'advise', 'never', 'deny', 'force']
+  when:
+    - manage_thp_shmem_enabled_setting is defined
+
+- name: Verify the provided transparent hugepage (THP) use_zero_page setting
+  ansible.builtin.assert:
+    fail_msg: The provided transparent hugepage (THP) use_zero_page setting is not valid
+    that:
+      - manage_thp_use_zero_page_setting in ['0', '1']
+  when:
+    - manage_thp_use_zero_page_setting is defined
+
 - name: Create the unit file to configure transparent hugepage support
   ansible.builtin.template:
     dest: /etc/systemd/system/{{ manage_thp_service_name }}.service

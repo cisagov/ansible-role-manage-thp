@@ -20,6 +20,10 @@ None.
 | manage\_thp\_enabled\_path | The sysfs path to control the `enabled` setting for transparent hugepages. | `/sys/kernel/mm/transparent_hugepage/enabled` | No |
 | manage\_thp\_enabled\_setting | A value of `always`, `madvise`, or `never`. Please see the [kernel documentation] for more information. | n/a | Yes |
 | manage\_thp\_service\_name | The name of the SystemD service that is created to manage transparent hugepage settings. Please note that `.service` is appended to this value in the name of the unit file created. | `configure-transparent-hugepages` | No |
+| manage\_thp\_shmem\_enabled\_path | The sysfs path to control the `shmem_enabled` setting for transparent hugepages. | `/sys/kernel/mm/transparent_hugepage/shmem_enabled` | No |
+| manage\_thp\_shmem\_enabled\_setting | If defined it must be a value of `always`, `within_size`, `advise`, `never`, `deny`, or `force`. Please see the [kernel documentation] for more information. | n/a | No |
+| manage\_thp\_use\_zero\_page\_path | The sysfs path to control the `use_zero_page` setting for transparent hugepages. | `/sys/kernel/mm/transparent_hugepage/use_zero_page` | No |
+| manage\_thp\_use\_zero\_page\_setting | If defined it must be a value of `0` or `1`. Please see the [kernel documentation] for more information. | n/a | No |
 
 ## Dependencies ##
 
