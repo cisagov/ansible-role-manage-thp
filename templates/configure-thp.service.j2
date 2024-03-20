@@ -13,6 +13,12 @@ ExecStart=/bin/sh -c 'echo {{ manage_thp_defrag_setting }} > {{ manage_thp_defra
 {% if manage_thp_enabled_setting is defined %}
 ExecStart=/bin/sh -c 'echo {{ manage_thp_enabled_setting }} > {{ manage_thp_enabled_path }}'
 {% endif %}
+{% if manage_thp_shmem_enabled_setting is defined %}
+ExecStart=/bin/sh -c 'echo {{ manage_thp_shmem_enabled_setting }} > {{ manage_thp_shmem_enabled_path }}'
+{% endif %}
+{% if manage_thp_use_zero_page_setting is defined %}
+ExecStart=/bin/sh -c 'echo {{ manage_thp_use_zero_page_setting }} > {{ manage_thp_use_zero_page_path }}'
+{% endif %}
 Type=oneshot
 
 [Install]
