@@ -176,6 +176,7 @@ jobs:
       matrix:
         scenario:
           - default
+          - no_settings
     steps:
       - id: harden-runner
         name: Harden the runner

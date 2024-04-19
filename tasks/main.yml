@@ -1,4 +1,13 @@
 ---
+- name: Verify that at least one Transparent HugePage setting is provided
+  ansible.builtin.fail:
+    msg: At least one Transparent HugePage setting must be provided
+  when:
+    - manage_thp_defrag_setting is not defined
+    - manage_thp_enabled_setting is not defined
+    - manage_thp_shmem_enabled_setting is not defined
+    - manage_thp_use_zero_page_setting is not defined
+
 - name: Verify the provided Transparent HugePage "defrag" setting
   ansible.builtin.assert:
     fail_msg: The provided Transparent HugePage "defrag" setting is not valid
