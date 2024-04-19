@@ -22,3 +22,6 @@ def test_configure_thp_service(host, service):
     """Test that any services created are enabled."""
     svc = host.service(service)
     assert svc.is_enabled, f"The {service} service is not enabled"
+    # This command takes a unit file path to verify
+    res = host.run(f'systemd-analyze verify {svc.systemd_properties["FragmentPath"]}')
+    assert res.succeeded, f"The {service} service is not valid"
