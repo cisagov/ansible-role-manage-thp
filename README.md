@@ -14,6 +14,10 @@ None.
 
 ## Role Variables ##
 
+> [!NOTE]
+> Although none of the variables that control settings are individually required,
+> at least one of them must be defined.
+
 | Variable | Description | Default | Required |
 |----------|-------------|---------|----------|
 | manage\_thp\_defrag\_path | The sysfs path to control the Transparent HugePage `defrag` setting. | `/sys/kernel/mm/transparent_hugepage/defrag` | No |
