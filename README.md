@@ -21,15 +21,15 @@ None.
 | Variable | Description | Default | Required |
 |----------|-------------|---------|----------|
 | manage\_thp\_defrag\_path | The sysfs path to control the Transparent HugePage `defrag` setting. | `/sys/kernel/mm/transparent_hugepage/defrag` | No |
-| manage\_thp\_defrag\_setting | If defined it must be a value of `always`, `defer`, `defer+madvise`, `madvise`, or `never`. Please see the [kernel documentation] for more information. | n/a | No |
+| manage\_thp\_defrag\_setting | If defined this variable must be given a value of `always`, `defer`, `defer+madvise`, `madvise`, or `never`. Please see the [kernel documentation] for more information. | n/a | No |
 | manage\_thp\_enabled\_path | The sysfs path to control the Transparent HugePage `enabled` setting. | `/sys/kernel/mm/transparent_hugepage/enabled` | No |
-| manage\_thp\_enabled\_setting | A value of `always`, `madvise`, or `never`. Please see the [kernel documentation] for more information. | n/a | No |
+| manage\_thp\_enabled\_setting | If defined this variable must be given a value of `always`, `madvise`, or `never`. Please see the [kernel documentation] for more information. | n/a | No |
 | manage\_thp\_service\_name | The name of the SystemD service that is created to manage Transparent HugePage settings. Please note that `.service` is appended to this value in the name of the unit file created. | `configure-transparent-hugepage-settings` | No |
 | manage\_thp\_shmem\_enabled\_path | The sysfs path to control the Transparent HugePage `shmem_enabled` setting. | `/sys/kernel/mm/transparent_hugepage/shmem_enabled` | No |
-| manage\_thp\_shmem\_enabled\_setting | If defined it must be a value of `always`, `within_size`, `advise`, `never`, `deny`, or `force`. Please see the [kernel documentation] for more information. | n/a | No |
+| manage\_thp\_shmem\_enabled\_setting | If defined this variable must be given a value of `always`, `within_size`, `advise`, `never`, `deny`, or `force`. Please see the [kernel documentation] for more information. | n/a | No |
 | manage\_thp\_start\_before\_service | The name of the service that the SystemD unit file should be configured to start before. Please note that `.service` is appended to this value in the definition of the `Before` directive. | n/a | No |
 | manage\_thp\_use\_zero\_page\_path | The sysfs path to control the Transparent HugePage `use_zero_page` setting. | `/sys/kernel/mm/transparent_hugepage/use_zero_page` | No |
-| manage\_thp\_use\_zero\_page\_setting | If defined it must be a value of `0` or `1`. Please see the [kernel documentation] for more information. | n/a | No |
+| manage\_thp\_use\_zero\_page\_setting | If defined this variable must be given a value of `0` or `1`. Please see the [kernel documentation] for more information. | n/a | No |
 
 ## Dependencies ##
 
