@@ -18,6 +18,14 @@ None.
 > Although none of the variables that control settings are individually required,
 > at least one of them must be defined.
 
+<!--
+Note:
+The order of any setting's valid values is intentionally _not_ enforced in alphabetical
+order. They instead match the output of a `cat /path/to/setting` command on a live
+system so that it is easier to cross-reference the setting values with what one would
+see when configuring Transparent HugePage settings manually.
+-->
+
 | Variable | Description | Default | Required |
 |----------|-------------|---------|----------|
 | manage\_thp\_defrag\_path | The sysfs path to control the Transparent HugePage `defrag` setting. | `/sys/kernel/mm/transparent_hugepage/defrag` | No |
