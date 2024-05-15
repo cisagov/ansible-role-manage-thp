@@ -1,2 +1,57 @@
 ---
-# tasks file for skeleton
+# Note:
+# The order of any setting's valid values is intentionally _not_ enforced in alphabetical
+# order. They instead match the output of a `cat /path/to/setting` command on a live
+# system so that it is easier to cross-reference the setting values with what one would
+# see when configuring Transparent HugePage settings manually.
+
+- name: Verify that at least one Transparent HugePage setting is provided
+  ansible.builtin.fail:
+    msg: At least one Transparent HugePage setting must be provided
+  when:
+    - manage_thp_defrag_setting is not defined
+    - manage_thp_enabled_setting is not defined
+    - manage_thp_shmem_enabled_setting is not defined
+    - manage_thp_use_zero_page_setting is not defined
+
+- name: Verify the provided Transparent HugePage "defrag" setting
+  ansible.builtin.assert:
+    fail_msg: The provided Transparent HugePage "defrag" setting is not valid
+    that:
+      - manage_thp_defrag_setting in ['always', 'defer', 'defer+madvise', 'madvise', 'never']
+  when:
+    - manage_thp_defrag_setting is defined
+
+- name: Verify the provided Transparent HugePage "enabled" setting
+  ansible.builtin.assert:
+    fail_msg: The provided Transparent HugePage "enabled" setting is not valid
+    that:
+      - manage_thp_enabled_setting in ['always', 'madvise', 'never']
+
+- name: Verify the provided Transparent HugePage shmem_enabled setting
+  ansible.builtin.assert:
+    fail_msg: The provided Transparent HugePage shmem_enabled setting is not valid
+    that:
+      - manage_thp_shmem_enabled_setting in ['always', 'within_size', 'advise', 'never', 'deny', 'force']
+  when:
+    - manage_thp_shmem_enabled_setting is defined
+
+- name: Verify the provided Transparent HugePage use_zero_page setting
+  ansible.builtin.assert:
+    fail_msg: The provided Transparent HugePage use_zero_page setting is not valid
+    that:
+      - manage_thp_use_zero_page_setting in ['0', '1']
+  when:
+    - manage_thp_use_zero_page_setting is defined
+
+- name: Create the unit file to configure Transparent HugePage settings
+  ansible.builtin.template:
+    dest: /etc/systemd/system/{{ manage_thp_service_name }}.service
+    mode: 0644
+    src: configure-thp.service.j2
+  notify: systemd daemon-reload
+
+- name: Enable the service to configure Transparent HugePage settings
+  ansible.builtin.service:
+    enabled: true
+    name: "{{ manage_thp_service_name }}"

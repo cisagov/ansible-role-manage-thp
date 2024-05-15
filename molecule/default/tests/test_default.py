@@ -12,7 +12,16 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 ).get_hosts("all")
 
 
-@pytest.mark.parametrize("x", [True])
-def test_packages(host, x):
-    """Run a dummy test, just to show what one would look like."""
-    assert x
+@pytest.mark.parametrize(
+    "service",
+    [
+        "configure-transparent-hugepage-settings",
+    ],
+)
+def test_configure_thp_service(host, service):
+    """Test that any services created are enabled."""
+    svc = host.service(service)
+    assert svc.is_enabled, f"The {service} service is not enabled"
+    # This command takes a unit file path to verify
+    res = host.run(f'systemd-analyze verify {svc.systemd_properties["FragmentPath"]}')
+    assert res.succeeded, f"The {service} service is not valid"
