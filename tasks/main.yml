@@ -47,7 +47,7 @@
 - name: Create the unit file to configure Transparent HugePage settings
   ansible.builtin.template:
     dest: /etc/systemd/system/{{ manage_thp_service_name }}.service
-    mode: 0644
+    mode: u=rw,g=r,o=r
     src: configure-thp.service.j2
   notify: systemd daemon-reload
 
