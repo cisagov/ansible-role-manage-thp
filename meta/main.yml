@@ -8,7 +8,9 @@ dependencies: []
 galaxy_info:
   author: Nicholas McDonnell
   company: CISA Cyber Assessments
-  description: Ansible role to configure a SystemD service to manage Transparent HugePage (THP) settings.
+  description: >-
+    Ansible role to configure a systemd service to manage Transparent
+    HugePage (THP) settings.
   galaxy_tags:
     - hugepage
     - thp

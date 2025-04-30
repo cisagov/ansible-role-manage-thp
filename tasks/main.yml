@@ -1,9 +1,9 @@
 ---
-# Note:
-# The order of any setting's valid values is intentionally _not_ enforced in alphabetical
-# order. They instead match the output of a `cat /path/to/setting` command on a live
-# system so that it is easier to cross-reference the setting values with what one would
-# see when configuring Transparent HugePage settings manually.
+# Note: The order of any setting's valid values is intentionally _not_
+# enforced in alphabetical order. They instead match the output of a
+# `cat /path/to/setting` command on a live system so that it is easier
+# to cross-reference the setting values with what one would see when
+# configuring Transparent HugePage settings manually.
 
 - name: Verify that at least one Transparent HugePage setting is provided
   ansible.builtin.fail:
@@ -18,7 +18,9 @@
   ansible.builtin.assert:
     fail_msg: The provided Transparent HugePage "defrag" setting is not valid
     that:
-      - manage_thp_defrag_setting in ['always', 'defer', 'defer+madvise', 'madvise', 'never']
+      - >-
+        manage_thp_defrag_setting in
+        ['always', 'defer', 'defer+madvise', 'madvise', 'never']
   when:
     - manage_thp_defrag_setting is defined
 
@@ -32,7 +34,9 @@
   ansible.builtin.assert:
     fail_msg: The provided Transparent HugePage shmem_enabled setting is not valid
     that:
-      - manage_thp_shmem_enabled_setting in ['always', 'within_size', 'advise', 'never', 'deny', 'force']
+      - >-
+        manage_thp_shmem_enabled_setting in
+        ['always', 'within_size', 'advise', 'never', 'deny', 'force']
   when:
     - manage_thp_shmem_enabled_setting is defined
 
@@ -47,7 +51,7 @@
 - name: Create the unit file to configure Transparent HugePage settings
   ansible.builtin.template:
     dest: /etc/systemd/system/{{ manage_thp_service_name }}.service
-    mode: 0644
+    mode: u=rw,g=r,o=r
     src: configure-thp.service.j2
   notify: systemd daemon-reload
 

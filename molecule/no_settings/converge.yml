@@ -13,7 +13,9 @@
             fail_msg: Expected failure did not occur
             that:
               - ansible_failed_task is defined
-              - ansible_failed_task.name == "Verify that at least one Transparent HugePage setting is provided"
+              - >-
+                ansible_failed_task.name ==
+                "Verify that at least one Transparent HugePage setting is provided"
               - ansible_failed_result is defined
               - ansible_failed_result.changed is false
               - ansible_failed_result.failed is true
