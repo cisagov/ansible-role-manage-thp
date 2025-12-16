@@ -1,6 +1,7 @@
 # ansible-role-manage-thp #
 
 [![GitHub Build Status](https://github.com/cisagov/ansible-role-manage-thp/workflows/build/badge.svg)](https://github.com/cisagov/ansible-role-manage-thp/actions)
+[![License](https://img.shields.io/github/license/cisagov/ansible-role-manage-thp)](https://spdx.org/licenses/)
 [![CodeQL](https://github.com/cisagov/ansible-role-manage-thp/workflows/CodeQL/badge.svg)](https://github.com/cisagov/ansible-role-manage-thp/actions/workflows/codeql-analysis.yml)
 
 An Ansible role that creates a SystemD unit to manage Transparent HugePage (THP)
