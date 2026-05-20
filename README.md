@@ -21,10 +21,11 @@ None.
 
 <!--
 Note:
-The order of any setting's valid values is intentionally _not_ enforced in alphabetical
-order. They instead match the output of a `cat /path/to/setting` command on a live
-system so that it is easier to cross-reference the setting values with what one would
-see when configuring Transparent HugePage settings manually.
+The order of any setting's valid values is intentionally _not_
+enforced in alphabetical order. They instead match the output of a
+`cat /path/to/setting` command on a live system so that it is easier
+to cross-reference the setting values with what one would see when
+configuring Transparent HugePage settings manually.
 -->
 
 | Variable | Description | Default | Required |
