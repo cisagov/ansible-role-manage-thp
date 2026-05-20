@@ -28,7 +28,7 @@ see when configuring Transparent HugePage settings manually.
 -->
 
 | Variable | Description | Default | Required |
-|----------|-------------|---------|----------|
+| -------- | ----------- | ------- | -------- |
 | manage\_thp\_defrag\_path | The sysfs path to control the Transparent HugePage `defrag` setting. | `/sys/kernel/mm/transparent_hugepage/defrag` | No |
 | manage\_thp\_defrag\_setting | If defined this variable must be given a value of `always`, `defer`, `defer+madvise`, `madvise`, or `never`. Please see the [kernel documentation] for more information. | n/a | No |
 | manage\_thp\_enabled\_path | The sysfs path to control the Transparent HugePage `enabled` setting. | `/sys/kernel/mm/transparent_hugepage/enabled` | No |
